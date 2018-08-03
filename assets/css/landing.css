@@ -1,0 +1,61 @@
+html,html body,div#overlay{
+  height: 100vh;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: #222222;
+}
+div#overlay{
+  background-image: url("../images/emiliano-vittoriosi-720679-unsplash.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  color: white;
+  margin: 0px auto;
+  text-align: center;
+  width: 100%;
+  opacity: 1;
+}
+#title{
+  font-size: 12vw;
+  font-family: "Holtwood One SC", "serif";
+}
+
+#overlay .jumbotron{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 30vh;
+  background-color: rgba(20, 20, 20, 0.6);
+}
+
+#overlay .jumbotron p{
+  margin: auto;
+}
+
+.jumbotron a{
+  color: #129cf3;
+}
+
+.jumbotron a:hover{
+  text-decoration: none;
+  color: rgba(200, 200, 200, 0.5);
+}
+
+#startButton{
+  background: #129cf3;
+  color: white;
+  padding: 10px 5vw;
+  margin: 15px auto;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  #overlay .jumbotron   {   margin-top: 33vh;   }
+}
+
+@media only screen and (max-width: 350px) {
+  #overlay .jumbotron   {   margin-top: 36vh;   }
+}
