@@ -8,11 +8,38 @@
     <script type="text/javascript" src="js\lib\bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Holtwood+One+SC" rel="stylesheet">
     <title>Beat A Tap!</title>
   </head>
   <body>
-    <canvas id="mainCanvas" resize>
-    </canvas>
+    <div id="start" class="cover">
+      <div class="jumbotron">
+        <h1 id="title">BEATATAP</h1>
+        <p>(A <a href="#">Saga</a> project)</p>
+        <button id="startButton" class="btn btn-lg btn-primary">START</button>
+        <h6>(Photo by <a href="https://unsplash.com/@emilianovittoriosi">Emiliano Vittoriosi</a> on Unsplash)</h6>
+        <h6>(A <a href="https://www.patatap.com">Patatap</a> clone)</h6>
+      </div>
+    </div>
+    <div id="app" class="cover">
+      <canvas id="mainCanvas" resize hidden>
+      </canvas>
+      <div id="soundboardTitle"></div>
+    </div>
+    <div id="overlay" class="cover">
+      <div class="jumbotron">
+        <h2>In app controls :</h2>
+        <h4>Press (a-z) for different beats.</h4>
+        <h4>(Left arrow for previous soundboard)</h4>
+        <h4>(Right arrow for next soundboard)</h4>
+        <h4>Press F11 or Double click to go to full screen! (Recommended)</h4>
+        <h4>Click anywhere for help!</h4>
+        <hr>
+        <p>Click anywhere to continue!</p>
+        <h3>OR</h3>
+        <a href="/" class="btn btn-lg btn-primary">Go to homepage!</a>
+      </div>
+    </div>
   </body>
   <script type="text/paperscript" src="js\main.js" canvas="mainCanvas"></script>
 </html>
