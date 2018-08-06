@@ -1,11 +1,10 @@
-html,html body,div#overlay{
-  height: 100vh;
+html,html body{
   width: 100%;
   padding: 0px;
   margin: 0px;
   background-color: #222222;
 }
-div#overlay{
+#top{
   background-image: url("../images/emiliano-vittoriosi-720679-unsplash.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -22,14 +21,14 @@ div#overlay{
   font-family: "Holtwood One SC", "serif";
 }
 
-#overlay .jumbotron{
+#top .jumbotron{
   display: block;
   width: 100%;
   margin: 0 auto;
   background-color: rgba(20, 20, 20, 0.6);
 }
 
-#overlay .jumbotron p{
+#top .jumbotron p{
   margin: auto;
 }
 

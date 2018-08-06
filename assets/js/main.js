@@ -63,6 +63,7 @@ var appDiv      = document.querySelector('div#app')
 var overlayDiv  = document.querySelector('div#overlay')
 var overlayTime = 0;
 
+//  SHOW TITLE FOR CURRENT SOUNDBOARD
 var showTitle = function (){
                   document.getElementById('soundboardTitle').innerHTML="<h1>"+currentKeyData.details.title+"</h1>"
                   document.querySelector('#mainCanvas').style.display="none";
@@ -70,6 +71,32 @@ var showTitle = function (){
                     document.querySelector('#mainCanvas').style.display="block";
                   },1000)
                 }
+
+//  SHOW HELP PANE 
+var showHelp =  function() {
+                  if (appDiv.style.zIndex=="1") {
+                    appDiv.style.zIndex="0"
+                    overlayDiv.style.zIndex="1"
+                  }
+                  else if (overlayDiv.style.zIndex=="1") {
+                    appDiv.style.zIndex="1"
+                    overlayDiv.style.zIndex="0"
+                    showTitle();
+                  }
+                  window.clearTimeout(overlayTime)
+                  overlayTime=window.setTimeout(function() {
+                    appDiv.style.zIndex="1"
+                    overlayDiv.style.zIndex="0"
+                    // showTitle();
+                  },10000);
+                }
+document.body.addEventListener('click', showHelp);
+
+//  RESIZE ANIMATION PANE SIZE WITH WINDOW RESIZE
+window.addEventListener('resize', function() {
+  maxPoint= new Point(view.size.width,view.size.height)
+});
+
 
 //  KEY SPECIFIC ANIMATION COLOR/SOUND AND OPERATION
 function onKeyDown(event) {
@@ -121,13 +148,18 @@ function onKeyDown(event) {
     showTitle()
   }
   // CHECK KEY AND PLAY SOUND
-  if (currentKeyData[event.key])
+  else if (currentKeyData[event.key])
   {
     currentKeyData[event.key].sound.play()
     var centerPoint= maxPoint * Point.random()
     circlesarr.push(new Path.Circle(centerPoint,Math.random()*300))
     circlesarr[circlesarr.length-1].fillColor=currentKeyData[event.key].color
     // circlesarr[circlesarr.length-1].fillColor="rgb("+Math.random()*200+", "+Math.random()*200+", "+Math.random()*200+")"
+  }
+  else
+  {
+    showHelp()
+    console.log("The following key has no function whatsoever in the app!!")
   }
 }
 
@@ -146,10 +178,7 @@ function onFrame(event) {
   }
 }
 
-window.addEventListener('resize', function() {
-  maxPoint= new Point(view.size.width,view.size.height)
-});
-
+//  FUNCTION TO ENABLE FULLSCREEN
 function GoInFullscreen(element) {
 	if(element.requestFullscreen)
 		element.requestFullscreen();
@@ -161,6 +190,7 @@ function GoInFullscreen(element) {
 		element.msRequestFullscreen();
 }
 
+//  FUNCTION TO DISABLE FULLSCREEN
 function GoOutFullscreen() {
 	if(document.exitFullscreen)
 		document.exitFullscreen();
@@ -172,32 +202,6 @@ function GoOutFullscreen() {
 		document.msExitFullscreen();
 }
 
-
-
-//  START THE APP
-document.querySelector('#startButton').addEventListener('click', function() {
-  document.querySelector('div#start').style.display="none"
-  appDiv.style.zIndex="1"
-});
-
-document.body.addEventListener('click', function(e) {
-  if (appDiv.style.zIndex=="1") {
-    appDiv.style.zIndex="0"
-    overlayDiv.style.zIndex="1"
-  }
-  else if (overlayDiv.style.zIndex=="1") {
-    appDiv.style.zIndex="1"
-    overlayDiv.style.zIndex="0"
-    showTitle();
-  }
-  window.clearTimeout(overlayTime)
-  overlayTime=window.setTimeout(function() {
-    appDiv.style.zIndex="1"
-    overlayDiv.style.zIndex="0"
-    // showTitle();
-  },10000);
-});
-
 $("body").dblclick(function() {
   if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
     GoOutFullscreen()
@@ -206,3 +210,9 @@ $("body").dblclick(function() {
     GoInFullscreen(document.body);
   }
 })
+
+//  START THE APP
+document.querySelector('#startButton').addEventListener('click', function() {
+  document.querySelector('div#start').style.display="none"
+  appDiv.style.zIndex="1"
+});
